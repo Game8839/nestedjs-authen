@@ -10,24 +10,25 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private authService: AuthService,
-  ) {}
+  ) // private authService: AuthService,
+  {}
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
   login(@Request() req): any {
-    return this.authService.login(req.user);
+    // return this.authService.login(req.user);
+    return { msg: 'login' };
   }
 
   @UseGuards(AuthenticatedGuard)
-  @Get()
+  @Get('passportSession')
   getHello(): string {
     return this.appService.getHellome();
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get('jwt')
-  getUserJwt(@Request() req): string {
-    return req.user;
-  }
+  // @UseGuards(JwtAuthGuard)
+  // @Get('jwt')
+  // getUserJwt(@Request() req): string {
+  //   return req.user;
+  // }
 }

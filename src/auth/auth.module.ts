@@ -13,19 +13,19 @@ dotenv.config();
 @Module({
   imports: [
     UsersModule,
-    // PassportModule.register({ session: true }), // use for cookie session
-    PassportModule,
-    JwtModule.register({
-      secret: process.env.JWT_SECERT_KEY,
-      signOptions: { expiresIn: '1d' },
-    }),
+    PassportModule.register({ session: true }), // use for cookie session
+    // PassportModule,
+    // JwtModule.register({
+    //   secret: process.env.JWT_SECERT_KEY,
+    //   signOptions: { expiresIn: '1d' },
+    // }),
   ],
   providers: [
     AuthService,
     LocalStrategy,
-    JwtStrategy,
-    // SessionSerializer // use for cookie session
+    // JwtStrategy,
+    SessionSerializer, // use for cookie session
   ],
-  exports: [AuthService],
+  // exports: [AuthService],
 })
 export class AuthModule {}
